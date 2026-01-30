@@ -1,0 +1,108 @@
+@font-face {
+    font-family: "Chinese Rocks";
+    src: url(assets/chinese-rocks-free/chinese\ rocks\ rg.otf) format(opentype);
+}
+
+:root {
+    --content-max-width--: 1500px;
+}
+
+body {
+    background-color: #fff;
+    background-image: repeating-linear-gradient(
+    to bottom,
+    #eee 0,
+    #eee 1px,
+    transparent 1px,
+    transparent 20px
+    );
+}
+
+header {
+    /*background-color: rgb(237, 245, 247);*/
+    background-color: rgb(228, 250, 255);
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    min-width: 500px;
+    max-width: var(--content-max-width--);
+    margin: 5px 300px 5px 300px;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 5px;
+    padding: 0px 20px 0px 20px;
+    font-family: 'Chinese Rocks';
+    font-size: 60px;
+    color: #8B5E3C;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 700px;
+}
+
+.search-bar input {
+    border-radius: 15px;
+    padding: 0px 10px 0px 10px;
+    width: 100%;
+    height: 35px;
+    line-height: 1;
+    /*font-family:'Courier New', Courier, monospace;*/
+    font-size: 18px;
+    background-color: white;
+}
+
+.add-book-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Chinese Rocks';
+    font-size: 25px;
+    color: #8B5E3C;
+    border-color: rgb(190, 190, 190);
+    background: white;
+    padding: 8px;
+    border-radius: 15px;
+    cursor: pointer;
+    max-height: 40px;
+}
+
+.add-book-btn:hover {
+    background: rgb(219, 201, 149);
+}
+
+.add-book-btn:active {
+    background: rgb(202, 174, 95);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-grid {
+    display: grid;
+    width: 1300px;
+}
+
+.card {
+    border: 1px solid black;
+    width: 300px;
+}
