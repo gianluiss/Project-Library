@@ -3,6 +3,7 @@ const dialog = document.querySelector("dialog");
 const bookForm = document.querySelector("#bookForm");
 const closeBtn = document.querySelector(".close-btn");
 const cardGrid = document.querySelector(".card-grid");
+const deleteBtn = document.querySelectorAll(".delete");
 
 const myLibrary = [];
 
@@ -38,7 +39,7 @@ function displayBook() {
     });
 }
 
-displayBook();
+//displayBook();
 
 addBookBtn.addEventListener("click", () => {
     dialog.showModal();
@@ -60,27 +61,86 @@ function generateCards() { //generate all cards in myLibrary
         const title = document.createElement('h2');
         const author = document.createElement('p');
         const genre = document.createElement('p');
-        //state-wrapper
 
         title.textContent = book.title;
         author.textContent = book.author;
         genre.textContent = book.genre;
 
-        //const cardActionWrapper = document.createElement('div');
+        const cardActionWrapper = document.createElement('div');
+        cardActionWrapper.classList.add("card-action-wrapper");
+
+        const statusBtn = document.createElement('button');
+        if(book.isRead) {
+            statusBtn.classList.add("green-btn");
+            statusBtn.textContent = "Finished";
+        }
+        else {
+            statusBtn.classList.add("red-btn");
+            statusBtn.textContent = "Unfinished";
+        }
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add("delete");
+        deleteBtn.classList.add("red-btn");
+        deleteBtn.textContent = "Delete";
+
+        cardActionWrapper.appendChild(statusBtn);
+        cardActionWrapper.appendChild(deleteBtn);
 
         cardDiv.appendChild(title);
         cardDiv.appendChild(author);
         cardDiv.appendChild(genre);
+        cardDiv.appendChild(cardActionWrapper);
 
         cardGrid.appendChild(cardDiv);
     });
 };
 
-generateCards();
 
-/* addCard() add cards one by one
+/* addCard() add cards one by one */
 
-*/
+function addCard() {
+    const book = myLibrary[myLibrary.length - 1];
+
+    const cardDiv = document.createElement('div');
+    cardDiv.className = "card";
+
+    const title = document.createElement('h2');
+    const author = document.createElement('p');
+    const genre = document.createElement('p');
+
+    title.textContent = book.title;
+    author.textContent = book.author;
+    genre.textContent = book.genre;
+
+    const cardActionWrapper = document.createElement('div');
+    cardActionWrapper.classList.add("card-action-wrapper");
+
+    const statusBtn = document.createElement('button');
+    if(book.isRead) {
+        statusBtn.classList.add("green-btn");
+        statusBtn.textContent = "Finished";
+    }
+    else {
+        statusBtn.classList.add("red-btn");
+        statusBtn.textContent = "Unfinished";
+    }
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add("delete");
+    deleteBtn.classList.add("red-btn");
+    deleteBtn.textContent = "Delete";
+
+    cardActionWrapper.appendChild(statusBtn);
+    cardActionWrapper.appendChild(deleteBtn);
+
+    cardDiv.appendChild(title);
+    cardDiv.appendChild(author);
+    cardDiv.appendChild(genre);
+    cardDiv.appendChild(cardActionWrapper);
+
+    cardGrid.appendChild(cardDiv);
+}
 
 bookForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -88,10 +148,17 @@ bookForm.addEventListener("submit", (event) => {
     const title = bookForm.title.value;
     const author = bookForm.author.value;
     const genre = bookForm.genre.value;
+    const isRead = bookForm.status.value === "finished" ? true : false;
 
-    addBookToLibrary(title, author, genre);
+
+    addBookToLibrary(title, author, genre, isRead);
     bookForm.reset();
     dialog.close();
 
-   // console.log(myLibrary);
+
+   //console.log(myLibrary);
+    //generateCards();
+    addCard();
 });
+
+generateCards();

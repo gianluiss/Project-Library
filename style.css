@@ -4,7 +4,10 @@
 }
 
 :root {
+    /*--primary-color--: rgb(153, 148, 116);*/
+    --primary-color--: rgb(196, 189, 148);
     --content-max-width--: 1500px;
+    --primary-font-color--: #8B5E3C;
 }
 
 body {
@@ -20,7 +23,7 @@ body {
 
 header {
     /*background-color: rgb(237, 245, 247);*/
-    background-color: rgb(228, 250, 255);
+    background-color: var(--primary-color--);
     display: flex;
     justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -32,7 +35,7 @@ header {
     align-items: center;
     flex-direction: row;
     width: 100%;
-    min-width: 500px;
+    min-width: 1320px;
     max-width: var(--content-max-width--);
     margin: 5px 300px 5px 300px;
 }
@@ -46,7 +49,7 @@ header {
     padding: 0px 20px 0px 20px;
     font-family: 'Chinese Rocks';
     font-size: 60px;
-    color: #8B5E3C;
+    color: var(--primary-font-color--);
 }
 
 .search-bar {
@@ -84,7 +87,7 @@ header {
 }
 
 .add-book-btn:hover {
-    background: rgb(219, 201, 149);
+    background: rgb(241, 231, 199);
 }
 
 .add-book-btn:active {
@@ -99,10 +102,80 @@ main {
 
 .card-grid {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: center;
+    gap: 20px;
     width: 1300px;
 }
 
 .card {
-    border: 1px solid black;
-    width: 300px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--primary-font-color--);
+    
+    display: grid;
+    grid-template-columns: subgrid;
+    border-radius: 8px;
+    background-color: #fffde4;
+    min-width: 300px;
+    min-height: 175px;
+    box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.2);
+    color: var(--primary-font-color--);
+}
+
+.card::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 10px;
+    width: 100%;
+    background-color: var(--primary-font-color--);
+}
+
+.card h2, .card p {
+    margin: 0;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.card h2 {
+    margin-top: 10px;
+    font-family: 'Chinese Rocks';
+    letter-spacing: 2px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.card-action-wrapper {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
+
+.card button {
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    width: 85px;
+    height: 30px;
+    color: white;
+}
+
+.green-btn {
+    background-color: rgb(52, 221, 52);
+}
+
+.red-btn {
+    background-color: rgb(218, 25, 25);
+}
+
+.card .delete {
+    width: 70px;
 }
