@@ -111,7 +111,6 @@ main {
 
 .card {
     position: relative;
-    overflow: hidden;
     border: 1px solid var(--primary-font-color--);
     
     display: grid;
@@ -120,8 +119,18 @@ main {
     background-color: #fffde4;
     min-width: 300px;
     min-height: 175px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 2px 6px rgba(0,0,0,0.2);*/
     color: var(--primary-font-color--);
+
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    /*box-shadow: 0 12px 20px rgba(0,0,0,0.4);*/
+    box-shadow: 4px 12px 20px rgba(0, 0, 0, 0.4);
 }
 
 .card::before {
@@ -138,6 +147,9 @@ main {
     margin: 0;
     margin-left: 8px;
     margin-right: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card h2 {

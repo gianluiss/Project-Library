@@ -36,6 +36,23 @@ addBookToLibrary("Dune", "Frank Herbert", "Sci-Fi", true);
 addBookToLibrary("Naruto", "Masashi Kishimoto", "Action", true);
 addBookToLibrary("The Catcher in the Rye", "J.D. Salinger", "Classic", false);
 addBookToLibrary("Attack on Titan", "Hajime Isayama", "Action", true);
+addBookToLibrary("Bleach", "Tite Kubo", "Action", true);
+addBookToLibrary("The Lord of the Rings", "J.R.R. Tolkien", "Fantasy", true);
+addBookToLibrary("Chainsaw Man", "Tatsuki Fujimoto", "Action", false);
+addBookToLibrary("1984", "George Orwell", "Dystopian", true);
+addBookToLibrary("Death Note", "Tsugumi Ohba", "Mystery", true);
+addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", "Classic", false);
+addBookToLibrary("My Hero Academia", "Kohei Horikoshi", "Action", true);
+addBookToLibrary("Pride and Prejudice", "Jane Austen", "Romance", false);
+addBookToLibrary("Black Clover", "Yūki Tabata", "Fantasy", true);
+addBookToLibrary("To Kill a Mockingbird", "Harper Lee", "Classic", false);
+addBookToLibrary("Dragon Ball", "Akira Toriyama", "Action", true);
+addBookToLibrary("The Alchemist", "Paulo Coelho", "Adventure", true);
+addBookToLibrary("One Punch Man", "ONE", "Action", true);
+addBookToLibrary("Frankenstein", "Mary Shelley", "Horror", false);
+addBookToLibrary("Fullmetal Alchemist", "Hiromu Arakawa", "Adventure", true);
+addBookToLibrary("The Hunger Games", "Suzanne Collins", "Dystopian", false);
+
 
 //console.log(myLibrary);
 
