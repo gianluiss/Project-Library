@@ -1,6 +1,8 @@
 const addBookBtn = document.querySelector(".add-book-btn");
 const dialog = document.querySelector("dialog");
+const bookForm = document.querySelector("#bookForm");
 const closeBtn = document.querySelector(".close-btn");
+const cardGrid = document.querySelector(".card-grid");
 
 const myLibrary = [];
 
@@ -44,4 +46,52 @@ addBookBtn.addEventListener("click", () => {
 
 closeBtn.addEventListener("click", () => {
     dialog.close();
+});
+
+dialog.addEventListener("close", () => {
+    bookForm.reset();
+});
+
+function generateCards() { //generate all cards in myLibrary
+    myLibrary.forEach(book => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = "card";
+
+        const title = document.createElement('h2');
+        const author = document.createElement('p');
+        const genre = document.createElement('p');
+        //state-wrapper
+
+        title.textContent = book.title;
+        author.textContent = book.author;
+        genre.textContent = book.genre;
+
+        //const cardActionWrapper = document.createElement('div');
+
+        cardDiv.appendChild(title);
+        cardDiv.appendChild(author);
+        cardDiv.appendChild(genre);
+
+        cardGrid.appendChild(cardDiv);
+    });
+};
+
+generateCards();
+
+/* addCard() add cards one by one
+
+*/
+
+bookForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const title = bookForm.title.value;
+    const author = bookForm.author.value;
+    const genre = bookForm.genre.value;
+
+    addBookToLibrary(title, author, genre);
+    bookForm.reset();
+    dialog.close();
+
+   // console.log(myLibrary);
 });

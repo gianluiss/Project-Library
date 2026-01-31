@@ -69,8 +69,38 @@
     </main>
 
     <dialog>
-        hello
-        <button class="close-btn">Close</button>
+        <form id="bookForm">
+            <div>
+                <label for="title">Title</label>
+                <input id="title" type="text" name="title" required>
+            </div>
+            <div>
+                <label for="author">Author</label>
+                <input id="author" type="text" name="author" required>
+            </div>
+            <div>
+                <select name="genre" required>
+                    <option value="" disabled selected>Select a genre...</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Biography">Biography</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Historical">Historical</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="Non-fiction">Non-Fiction</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Science-fiction">Science Fiction</option>
+                    <option value="Self-help">Self-Help</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Thriller">Thriller</option>
+                </select>
+            </div>
+            <div>
+                <button class="submit-btn btn" type="submit">Submit</button>
+                <button class="close-btn btn" type="button">Close</button>
+            </div>
+        </form>
     </dialog>
 </body>
 </html>
