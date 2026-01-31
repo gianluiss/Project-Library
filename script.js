@@ -3,7 +3,6 @@ const dialog = document.querySelector("dialog");
 const bookForm = document.querySelector("#bookForm");
 const closeBtn = document.querySelector(".close-btn");
 const cardGrid = document.querySelector(".card-grid");
-const deleteBtn = document.querySelectorAll(".delete");
 
 const myLibrary = [];
 
@@ -87,6 +86,7 @@ function generateCards() { //generate all cards in myLibrary
         cardActionWrapper.appendChild(statusBtn);
         cardActionWrapper.appendChild(deleteBtn);
 
+        cardDiv.id = book.id;
         cardDiv.appendChild(title);
         cardDiv.appendChild(author);
         cardDiv.appendChild(genre);
@@ -134,6 +134,7 @@ function addCard() {
     cardActionWrapper.appendChild(statusBtn);
     cardActionWrapper.appendChild(deleteBtn);
 
+    cardDiv.id = book.id;
     cardDiv.appendChild(title);
     cardDiv.appendChild(author);
     cardDiv.appendChild(genre);
@@ -150,15 +151,32 @@ bookForm.addEventListener("submit", (event) => {
     const genre = bookForm.genre.value;
     const isRead = bookForm.status.value === "finished" ? true : false;
 
-
     addBookToLibrary(title, author, genre, isRead);
+
     bookForm.reset();
     dialog.close();
 
-
-   //console.log(myLibrary);
     //generateCards();
     addCard();
 });
+
+
+cardGrid.addEventListener( 'click', (e) => {
+    if(!e.target.classList.contains("delete")) {
+        return;
+    }
+    const card = e.target.closest(".card");
+
+    for(let i = 0; i < myLibrary.length; i++) {
+        if(myLibrary[i].id === card.id) {
+            myLibrary.splice(i, 1);
+            break;
+        }
+    }
+    //console.log(myLibrary);
+    card.remove();
+});
+
+
 
 generateCards();
