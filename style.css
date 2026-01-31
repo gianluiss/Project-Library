@@ -102,10 +102,11 @@ main {
 
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, 300px);
     align-items: center;
-    gap: 20px;
+    gap: 32px;
     width: 1300px;
+    margin-top: 25px;
 }
 
 .card {

@@ -28,9 +28,16 @@ function addBookToLibrary(title, author, genre, isRead) {
     myLibrary.push(new Book(crypto.randomUUID(), title, author, genre, isRead));
 }
 
-addBookToLibrary("Harry Potta", "J.K. Rowling", "Fantasy", false);
+addBookToLibrary("Harry Potter", "J.K. Rowling", "Fantasy", false);
 addBookToLibrary("Jujutsu Kaisen", "Gege Akutami", "Action", true);
-console.log(myLibrary);
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "Fantasy", true);
+addBookToLibrary("One Piece", "Eiichiro Oda", "Adventure", false);
+addBookToLibrary("Dune", "Frank Herbert", "Sci-Fi", true);
+addBookToLibrary("Naruto", "Masashi Kishimoto", "Action", true);
+addBookToLibrary("The Catcher in the Rye", "J.D. Salinger", "Classic", false);
+addBookToLibrary("Attack on Titan", "Hajime Isayama", "Action", true);
+
+//console.log(myLibrary);
 
 function displayBook() {
     myLibrary.forEach( (book) => {
@@ -71,10 +78,12 @@ function generateCards() { //generate all cards in myLibrary
         const statusBtn = document.createElement('button');
         if(book.isRead) {
             statusBtn.classList.add("green-btn");
+            statusBtn.classList.add("finished");
             statusBtn.textContent = "Finished";
         }
         else {
             statusBtn.classList.add("red-btn");
+            statusBtn.classList.add("unfinished");
             statusBtn.textContent = "Unfinished";
         }
 
@@ -119,10 +128,12 @@ function addCard() {
     const statusBtn = document.createElement('button');
     if(book.isRead) {
         statusBtn.classList.add("green-btn");
+        statusBtn.classList.add("finished");
         statusBtn.textContent = "Finished";
     }
     else {
         statusBtn.classList.add("red-btn");
+        statusBtn.classList.add("unfinished");
         statusBtn.textContent = "Unfinished";
     }
 
@@ -152,16 +163,14 @@ bookForm.addEventListener("submit", (event) => {
     const isRead = bookForm.status.value === "finished" ? true : false;
 
     addBookToLibrary(title, author, genre, isRead);
-
     bookForm.reset();
     dialog.close();
 
-    //generateCards();
     addCard();
 });
 
 
-cardGrid.addEventListener( 'click', (e) => {
+cardGrid.addEventListener('click', (e) => {
     if(!e.target.classList.contains("delete")) {
         return;
     }
@@ -177,6 +186,40 @@ cardGrid.addEventListener( 'click', (e) => {
     card.remove();
 });
 
+cardGrid.addEventListener('click', (e) => {
+    if(!e.target.classList.contains("finished") && !e.target.classList.contains("unfinished")) {
+        return;
+    }
+    const card = e.target.closest(".card");
+
+    let isRead = null;
+    for(let i = 0; i < myLibrary.length; i++) {
+        if(myLibrary[i].id === card.id) {
+            myLibrary[i].isRead = !myLibrary[i].isRead;
+            isRead = myLibrary[i].isRead;
+            break;
+        }
+    }
+
+    if(isRead) {
+        e.target.classList.remove("unfinished");
+        e.target.classList.remove("red-btn");
+
+        e.target.classList.add("finished");
+        e.target.classList.add("green-btn");
+        e.target.textContent = "Finished"
+    }
+    else {
+        e.target.classList.remove("finished");
+        e.target.classList.remove("green-btn");
+
+        e.target.classList.add("unfinished");
+        e.target.classList.add("red-btn");
+        e.target.textContent = "Unfinished"
+    }
+
+    //console.log(myLibrary);
+});
 
 
 generateCards();
