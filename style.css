@@ -52,7 +52,7 @@ header {
     color: var(--primary-font-color--);
 }
 
-.search-bar {
+.search {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,7 +60,7 @@ header {
     width: 700px;
 }
 
-.search-bar input {
+.search input {
     border-radius: 15px;
     padding: 0px 10px 0px 10px;
     width: 100%;

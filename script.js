@@ -3,6 +3,7 @@ const dialog = document.querySelector("dialog");
 const bookForm = document.querySelector("#bookForm");
 const closeBtn = document.querySelector(".close-btn");
 const cardGrid = document.querySelector(".card-grid");
+const searchBar = document.querySelector(".search-bar");
 
 const myLibrary = [];
 
@@ -52,17 +53,55 @@ addBookToLibrary("One Punch Man", "ONE", "Action", true);
 addBookToLibrary("Frankenstein", "Mary Shelley", "Horror", false);
 addBookToLibrary("Fullmetal Alchemist", "Hiromu Arakawa", "Adventure", true);
 addBookToLibrary("The Hunger Games", "Suzanne Collins", "Dystopian", false);
+addBookToLibrary("Brave New World", "Aldous Huxley", "Dystopian", true);
+addBookToLibrary("Fahrenheit 451", "Ray Bradbury", "Dystopian", false);
+addBookToLibrary("The Chronicles of Narnia", "C.S. Lewis", "Fantasy", true);
+addBookToLibrary("Percy Jackson & the Olympians", "Rick Riordan", "Fantasy", true);
+addBookToLibrary("The Maze Runner", "James Dashner", "Sci-Fi", false);
+addBookToLibrary("Divergent", "Veronica Roth", "Dystopian", false);
+addBookToLibrary("The Name of the Wind", "Patrick Rothfuss", "Fantasy", true);
+addBookToLibrary("Mistborn", "Brandon Sanderson", "Fantasy", true);
+addBookToLibrary("The Witcher", "Andrzej Sapkowski", "Fantasy", true);
+addBookToLibrary("Eragon", "Christopher Paolini", "Fantasy", false);
+addBookToLibrary("Dracula", "Bram Stoker", "Horror", true);
+addBookToLibrary("The Picture of Dorian Gray", "Oscar Wilde", "Classic", false);
+addBookToLibrary("The Road", "Cormac McCarthy", "Post-Apocalyptic", false);
+addBookToLibrary("The Handmaid's Tale", "Margaret Atwood", "Dystopian", true);
+addBookToLibrary("American Gods", "Neil Gaiman", "Fantasy", false);
+addBookToLibrary("Good Omens", "Neil Gaiman & Terry Pratchett", "Fantasy", true);
+addBookToLibrary("The Shining", "Stephen King", "Horror", false);
+addBookToLibrary("It", "Stephen King", "Horror", false);
+addBookToLibrary("The Outsiders", "S.E. Hinton", "Classic", true);
+addBookToLibrary("The Giver", "Lois Lowry", "Dystopian", true);
+addBookToLibrary("Tokyo Ghoul", "Sui Ishida", "Horror", false);
+addBookToLibrary("Demon Slayer", "Koyoharu Gotouge", "Action", true);
+addBookToLibrary("Hunter x Hunter", "Yoshihiro Togashi", "Adventure", true);
+addBookToLibrary("JoJo's Bizarre Adventure", "Hirohiko Araki", "Action", true);
+addBookToLibrary("Mob Psycho 100", "ONE", "Action", false);
+addBookToLibrary("Spy x Family", "Tatsuya Endo", "Comedy", true);
+addBookToLibrary("Vinland Saga", "Makoto Yukimura", "Historical", true);
+addBookToLibrary("Berserk", "Kentaro Miura", "Dark Fantasy", false);
+addBookToLibrary("Steins;Gate", "5pb.", "Sci-Fi", true);
+addBookToLibrary("Re:Zero", "Tappei Nagatsuki", "Fantasy", false);
+addBookToLibrary("The Silent Patient", "Alex Michaelides", "Thriller", false);
+addBookToLibrary("Gone Girl", "Gillian Flynn", "Mystery", true);
+addBookToLibrary("The Da Vinci Code", "Dan Brown", "Thriller", true);
+addBookToLibrary("Sherlock Holmes", "Arthur Conan Doyle", "Mystery", true);
+addBookToLibrary("The Girl with the Dragon Tattoo", "Stieg Larsson", "Crime", false);
+addBookToLibrary("Life of Pi", "Yann Martel", "Adventure", true);
+addBookToLibrary("The Book Thief", "Markus Zusak", "Historical", false);
+addBookToLibrary("The Fault in Our Stars", "John Green", "Romance", false);
+addBookToLibrary("The Little Prince", "Antoine de Saint-Exupéry", "Fantasy", true);
+addBookToLibrary("World War Z", "Max Brooks", "Horror", false);
 
-
-//console.log(myLibrary);
-
+/*
 function displayBook() {
     myLibrary.forEach( (book) => {
         console.log(`ID: ${book.id}\nTitle: ${book.title}\nAuthor: ${book.author}\nGenre: ${book.genre}\nisRead: ${book.isRead}\n==========================`);
     });
 }
-
 //displayBook();
+*/
 
 addBookBtn.addEventListener("click", () => {
     dialog.showModal();
@@ -125,8 +164,30 @@ function generateCards() { //generate all cards in myLibrary
 
 /* addCard() add cards one by one */
 
-function addCard() {
-    const book = myLibrary[myLibrary.length - 1];
+searchBar.addEventListener('input', (e) => {
+    //console.log(e.target.value);
+    let searchValue = e.target.value;
+    cardGrid.replaceChildren();
+
+    let matches = findBooks(searchValue);
+    matches.forEach( (book) => addCard(book))
+});
+
+function findBooks(search) {
+    search = search.toLowerCase();
+    let matches = myLibrary.filter(book => {
+        for(let i = 0; i < search.length; i++) {
+            if(search[i] !== book.title[i].toLowerCase()) {
+                return false;
+            }
+        }
+        return true;
+    });
+    return matches;
+}
+
+function addCard(targetBook) {
+    let book = targetBook || myLibrary[myLibrary.length - 1];
 
     const cardDiv = document.createElement('div');
     cardDiv.className = "card";
